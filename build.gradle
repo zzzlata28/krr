@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Зависимость для Apache POI
+    implementation 'org.apache.poi:poi:5.2.3'
+    implementation 'org.apache.poi:poi-ooxml:5.2.3'
+    implementation 'org.apache.xmlbeans:xmlbeans:5.0.2'
+
+    // Зависимость для JFreeChart
+    implementation 'org.jfree:jfreechart:1.5.3'
+    implementation 'org.jfree:jcommon:1.0.24'
+}
+
+// Задаем настройки компиляции
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+// Задаем задачу для выполнения
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.kr.StudentAnalysis' // Укажите имя вашего основного класса
+}
